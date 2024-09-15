@@ -1,4 +1,4 @@
-tippy(targets, {
+tippy( {
   // disable arrow
   arrow: false,
 
