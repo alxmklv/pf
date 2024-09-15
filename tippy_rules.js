@@ -6,3 +6,9 @@ tippy('[data-tippy-content]', {
   arrow: false,
 
 });
+
+
+tippy('[data-tippy-position]', {
+
+  placement: '',
+});
