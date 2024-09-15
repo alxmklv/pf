@@ -1,7 +1,7 @@
 
 
 
-tippy('[data-tippy-content]' {
+tippy('[data-tippy-content]', {
   // disable arrow
   arrow: false,
 
