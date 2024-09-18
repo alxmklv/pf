@@ -1,3 +1,7 @@
 .tippy-content:empty {
     display: none;
 }
+
+.tippy-content:empty + .tippy-arrow {
+    display: none;
+}
