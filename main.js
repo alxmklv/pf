@@ -102,36 +102,33 @@
   });
 
 
-  // Function to check scroll within a scrollable container
+  // Function to handle showing/hiding elements based on scrolling
   function toggleHiddenElements() {
-    const scrollableContainer = $('[scroll-container]');
-    const triggerElement = scrollableContainer.find('[hidden-trigger]');
-    const hiddenElements = scrollableContainer.find('[hidden-before]');
+    const hiddenTrigger = $('[hidden-trigger]');
+    const hiddenBeforeElements = $('[hidden-before]');
 
-    // Get the scroll position of the container
-    const containerScrollTop = scrollableContainer.scrollTop();
-    const containerHeight = scrollableContainer.height();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          hiddenBeforeElements.each(function() {
+            $(this).show();  // Make elements with [hidden-before] visible
+          });
+        } else {
+          hiddenBeforeElements.each(function() {
+            $(this).hide();  // Hide elements with [hidden-before] when [hidden-trigger] is not visible
+          });
+        }
+      });
+    }, {
+      root: $('.scrollable-container')[0], // The scrollable container element
+      threshold: 0 // Trigger when even a small part is visible
+    });
 
-    // Get the offset position of the trigger element relative to the container
-    const triggerOffsetTop = triggerElement.position().top;
-    const triggerHeight = triggerElement.outerHeight();
-
-    // Check if the trigger element is within the visible area of the scrollable container
-    if (triggerOffsetTop < containerScrollTop + containerHeight && (triggerOffsetTop + triggerHeight) > containerScrollTop) {
-      hiddenElements.show(); // Show hidden elements when trigger is in view
-    } else {
-      hiddenElements.hide(); // Hide hidden elements when trigger is out of view
-    }
+    observer.observe(hiddenTrigger[0]); // Observe the element with [hidden-trigger]
   }
 
-  // Listen for scroll events on the scrollable container
-  $('[scroll-container]').on('scroll', function() {
-    toggleHiddenElements();
-  });
-
-  // Initial check when the page loads
+  // Call the function to activate the observer
   toggleHiddenElements();
-
 
 
 
