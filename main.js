@@ -19,8 +19,16 @@
 // Scroll to bottom
 
 $(document).ready(function() {
-  // Function to scroll to bottom
-  function scrollToBottom() {
+  // Function to scroll to bottom instantly
+  function scrollToBottomInstant() {
+    const chatWrapper = $('[layout-chat]');
+    chatWrapper.css('scroll-behavior', 'auto');  // Disable smooth scrolling
+    chatWrapper.scrollTop(chatWrapper[0].scrollHeight);  // Scroll instantly
+    chatWrapper.css('scroll-behavior', 'smooth');  // Re-enable smooth scrolling
+  }
+
+  // Function to scroll to bottom smoothly (for future scrolling)
+  function scrollToBottomSmooth() {
     const chatWrapper = $('[layout-chat]');
     chatWrapper.scrollTop(chatWrapper[0].scrollHeight);
   }
@@ -28,12 +36,12 @@ $(document).ready(function() {
   // Add MutationObserver to detect any new nodes being added
   const chatWrapper = document.querySelector('[layout-chat]');
   const observer = new MutationObserver(() => {
-    scrollToBottom(); // Scroll to bottom whenever new content is added
+    scrollToBottomSmooth(); // Scroll smoothly whenever new content is added
   });
 
   // Observe the chat wrapper for changes (new child nodes)
   observer.observe(chatWrapper, { childList: true });
 
-  // Initial scroll to bottom on page load
-  scrollToBottom();
+  // Initial scroll to bottom without smooth behavior
+  scrollToBottomInstant();
 });
