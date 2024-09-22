@@ -56,6 +56,12 @@ $(document).ready(function() {
     chatWrapper.scrollTop(chatWrapper[0].scrollHeight);
   }
 
+  // Function to scroll to bottom smoothly (for future scrolling)
+  function scrollToBottomSmooth() {
+    const chatWrapper = $('[layout-chat]');
+    chatWrapper.scrollTop(chatWrapper[0].scrollHeight);
+  }
+  
   // Function to add a message
   function sendMessage() {
     const messageInput = $('[chat-input]');
