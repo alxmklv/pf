@@ -49,15 +49,23 @@ $(document).ready(function() {
 
 ///Send message
 
-
 $(document).ready(function() {
   // Function to add a message
   function sendMessage() {
     const messageInput = $('[chat-input]');
     if (messageInput.val().trim() !== "") { // Check for non-empty value
-      const newMessage = $('<div class="message"></div>').text(messageInput.val()); // Create new message
-      $('.chat_column').append(newMessage);  // Append message to .chat_column
-      messageInput.val('');  // Clear input field
+      // Create the message structure
+      const messageWrapper = $('<div class="w-layout-vflex message-user-wrapper"></div>');
+      const messageInner = $('<div class="message-user-inner"></div>').text(messageInput.val());
+
+      // Append the message content inside the wrapper
+      messageWrapper.append(messageInner);
+
+      // Append the wrapper to the chat container
+      $('#chatColumn').append(messageWrapper);
+
+      // Clear the input field
+      messageInput.val('');
     }
   }
 
