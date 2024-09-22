@@ -102,7 +102,28 @@
   });
 
 
+  // Function to check the scroll position and toggle visibility
+    function toggleHiddenBefore() {
+      const hiddenBeforeElements = $('[hidden-before]');
+      const hiddenTriggerElement = $('[hidden-trigger]');
+      const triggerPosition = hiddenTriggerElement.offset().top; // Get the position of the trigger element
+      const triggerHeight = hiddenTriggerElement.outerHeight();  // Get the height of the trigger element
+      const triggerScrollPoint = triggerPosition + triggerHeight; // Calculate when the element is fully scrolled
 
+      if ($(window).scrollTop() >= triggerScrollPoint) {
+        hiddenBeforeElements.show();  // Show elements when scrolled past the trigger element
+      } else {
+        hiddenBeforeElements.hide();  // Hide elements when above the scroll point
+      }
+    }
+
+    // Run the function on scroll
+    $(window).on('scroll', function() {
+      toggleHiddenBefore();
+    });
+
+    // Run the function on page load (in case the page starts scrolled)
+    toggleHiddenBefore();
 
 
 
