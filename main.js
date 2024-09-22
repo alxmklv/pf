@@ -50,6 +50,12 @@ $(document).ready(function() {
 ///Send message
 
 $(document).ready(function() {
+  // Function to scroll to the bottom of the chat container
+  function scrollToBottom() {
+    const chatWrapper = $('#chatColumn');
+    chatWrapper.scrollTop(chatWrapper[0].scrollHeight);
+  }
+
   // Function to add a message
   function sendMessage() {
     const messageInput = $('[chat-input]');
@@ -66,6 +72,9 @@ $(document).ready(function() {
 
       // Clear the input field
       messageInput.val('');
+
+      // Scroll to the bottom of the chat container after the message is added
+      scrollToBottom();
     }
   }
 
