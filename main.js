@@ -62,14 +62,15 @@ $(document).ready(function() {
   }
 
   // Send message by pressing Enter
-  $('[chat-input]').on('keypress', function(event) {
-    if (event.which === 13) { // Enter key
+  $('[chat-input]').on('keydown', function(event) {
+    if (event.key === 'Enter') { // Enter key
+      event.preventDefault(); // Prevent new line in text area
       sendMessage();
     }
   });
 
   // Send message by clicking the send button
-  $('#sendButton').on('click', function() {
+  $('[send-button]').on('click', function() {
     sendMessage();
   });
 });
