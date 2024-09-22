@@ -12,13 +12,13 @@
       this.style.overflowY = 'hidden';
     }
   });
-});
+
 
 
 
 // Scroll to bottom
 
-$(document).ready(function() {
+
   // Function to scroll to bottom instantly
   function scrollToBottomInstant() {
     const chatWrapper = $('[layout-chat]');
@@ -44,12 +44,12 @@ $(document).ready(function() {
 
   // Initial scroll to bottom without smooth behavior
   scrollToBottomInstant();
-});
+
 
 
 ///Send message
 
-$(document).ready(function() {
+
   // Function to scroll to the bottom of the chat container
   function scrollToBottom() {
     const chatWrapper = $('#chatColumn');
@@ -61,7 +61,7 @@ $(document).ready(function() {
     const chatWrapper = $('[layout-chat]');
     chatWrapper.scrollTop(chatWrapper[0].scrollHeight);
   }
-  
+
   // Function to add a message
   function sendMessage() {
     const messageInput = $('[chat-input]');
