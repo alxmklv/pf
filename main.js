@@ -1,7 +1,11 @@
 
 
-// Chat Input behavour
+
  $(document).ready(function() {
+
+
+
+// Chat Input behavour
   $('.chat-input').on('input', function() {
     this.style.height = 'auto';  // Reset height
     this.style.height = Math.min(this.scrollHeight, 25 * 16) + 'px';  // Set new height with max 25rem
@@ -96,4 +100,45 @@
   $('[send-button]').on('click', function() {
     sendMessage();
   });
+
+
+  // Function to check scroll within a scrollable container
+   function toggleHiddenElements() {
+     const scrollableContainer = $('[scroll-container]');
+     const triggerElement = scrollableContainer.find('[hidden-trigger]');
+     const hiddenElements = scrollableContainer.find('[hidden-before]');
+
+     // Get the position of the trigger element relative to the scrollable container
+     const triggerRect = triggerElement[0].getBoundingClientRect();
+     const containerRect = scrollableContainer[0].getBoundingClientRect();
+
+     // Check if the trigger element is within the visible area of the scrollable container
+     if (triggerRect.top < containerRect.bottom && triggerRect.bottom > containerRect.top) {
+       hiddenElements.show(); // Element is in view, show hidden elements
+     } else {
+       hiddenElements.hide(); // Element is out of view, hide hidden elements
+     }
+   }
+
+   // Listen for scroll events on the scrollable container
+   $('[scroll-container]').on('scroll', function() {
+     toggleHiddenElements();
+   });
+
+   // Initial check when the page loads
+   toggleHiddenElements();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
