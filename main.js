@@ -61,7 +61,7 @@ $(document).ready(function() {
       // Append the message content inside the wrapper
       messageWrapper.append(messageInner);
 
-      // Append the wrapper to the chat container
+      // Append the wrapper to the chat container with ID #chatColumn
       $('#chatColumn').append(messageWrapper);
 
       // Clear the input field
@@ -69,10 +69,10 @@ $(document).ready(function() {
     }
   }
 
-  // Send message by pressing Enter
+  // Send message by pressing Enter (for textarea)
   $('[chat-input]').on('keydown', function(event) {
-    if (event.key === 'Enter') { // Enter key
-      event.preventDefault(); // Prevent new line in text area
+    if (event.key === 'Enter' && !event.shiftKey) { // Enter key without Shift
+      event.preventDefault(); // Prevent default behavior (new line)
       sendMessage();
     }
   });
