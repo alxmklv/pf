@@ -46,13 +46,30 @@ $(document).ready(function() {
   scrollToBottomInstant();
 });
 
+
+///Send message
+
+
 $(document).ready(function() {
-  // Function to add a message from input selected by [chat-input]
-  $('[chat-input]').on('keypress', function(event) {
-    if (event.which === 13 && this.value.trim() !== "") { // Enter key and non-empty value
-      const newMessage = $('<div class="message"></div>').text(this.value); // Create new message
+  // Function to add a message
+  function sendMessage() {
+    const messageInput = $('[chat-input]');
+    if (messageInput.val().trim() !== "") { // Check for non-empty value
+      const newMessage = $('<div class="message"></div>').text(messageInput.val()); // Create new message
       $('.chat_column').append(newMessage);  // Append message to .chat_column
-      this.value = '';  // Clear input field
+      messageInput.val('');  // Clear input field
     }
+  }
+
+  // Send message by pressing Enter
+  $('[chat-input]').on('keypress', function(event) {
+    if (event.which === 13) { // Enter key
+      sendMessage();
+    }
+  });
+
+  // Send message by clicking the send button
+  $('[send-button]').on('click', function() {
+    sendMessage();
   });
 });
