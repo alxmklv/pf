@@ -102,29 +102,6 @@
   });
 
 
-  // Function to show or hide elements based on scroll position
-   function toggleHiddenElements() {
-     const triggerElement = $('[hidden-trigger]');
-     const hiddenElements = $('[hidden-before]');
-
-     const scrollThreshold = 14 * 16; // 14 rem converted to pixels (1 rem = 16px)
-
-     if (triggerElement.scrollTop() >= scrollThreshold) {
-       hiddenElements.show(); // Show elements when scrolled beyond threshold
-     } else {
-       hiddenElements.hide(); // Hide elements when at the top
-     }
-   }
-
-   // Attach the scroll event to the trigger element
-   $('[hidden-trigger]').on('scroll', function() {
-     toggleHiddenElements(); // Check scroll position and toggle visibility
-   });
-
-   // Initial check in case the page is already scrolled
-   toggleHiddenElements();
-
-
 
 
 
