@@ -102,33 +102,27 @@
   });
 
 
-  // Function to handle showing/hiding elements based on scrolling
-  function toggleHiddenElements() {
-    const hiddenTrigger = $('[hidden-trigger]');
-    const hiddenBeforeElements = $('[hidden-before]');
+  // Function to show or hide elements based on scroll position
+   function toggleHiddenElements() {
+     const triggerElement = $('[hidden-trigger]');
+     const hiddenElements = $('[hidden-before]');
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          hiddenBeforeElements.each(function() {
-            $(this).show();  // Make elements with [hidden-before] visible
-          });
-        } else {
-          hiddenBeforeElements.each(function() {
-            $(this).hide();  // Hide elements with [hidden-before] when [hidden-trigger] is not visible
-          });
-        }
-      });
-    }, {
-      root: $('.scrollable-container')[0], // The scrollable container element
-      threshold: 0 // Trigger when even a small part is visible
-    });
+     const scrollThreshold = 14 * 16; // 14 rem converted to pixels (1 rem = 16px)
 
-    observer.observe(hiddenTrigger[0]); // Observe the element with [hidden-trigger]
-  }
+     if (triggerElement.scrollTop() >= scrollThreshold) {
+       hiddenElements.show(); // Show elements when scrolled beyond threshold
+     } else {
+       hiddenElements.hide(); // Hide elements when at the top
+     }
+   }
 
-  // Call the function to activate the observer
-  toggleHiddenElements();
+   // Attach the scroll event to the trigger element
+   $('[hidden-trigger]').on('scroll', function() {
+     toggleHiddenElements(); // Check scroll position and toggle visibility
+   });
+
+   // Initial check in case the page is already scrolled
+   toggleHiddenElements();
 
 
 
