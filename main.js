@@ -45,3 +45,14 @@ $(document).ready(function() {
   // Initial scroll to bottom without smooth behavior
   scrollToBottomInstant();
 });
+
+$(document).ready(function() {
+  // Function to add a message from input selected by [chat-input]
+  $('[chat-input]').on('keypress', function(event) {
+    if (event.which === 13 && this.value.trim() !== "") { // Enter key and non-empty value
+      const newMessage = $('<div class="message"></div>').text(this.value); // Create new message
+      $('.chat_column').append(newMessage);  // Append message to .chat_column
+      this.value = '';  // Clear input field
+    }
+  });
+});
