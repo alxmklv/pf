@@ -21,12 +21,12 @@
 $(document).ready(function() {
   // Function to scroll to bottom
   function scrollToBottom() {
-    const chatWrapper = $('.chat_wrapper');
+    const chatWrapper = $('.contentWrapper chat');
     chatWrapper.scrollTop(chatWrapper[0].scrollHeight);
   }
 
   // Add MutationObserver to detect any new nodes being added
-  const chatWrapper = document.querySelector('.chat_wrapper');
+  const chatWrapper = document.querySelector('.contentWrapper chat');
   const observer = new MutationObserver(() => {
     scrollToBottom(); // Scroll to bottom whenever new content is added
   });
