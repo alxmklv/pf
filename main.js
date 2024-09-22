@@ -69,7 +69,7 @@ $(document).ready(function() {
   });
 
   // Send message by clicking the send button
-  $('[send-button]').on('click', function() {
+  $('#sendButton').on('click', function() {
     sendMessage();
   });
 });
