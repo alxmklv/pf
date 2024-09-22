@@ -74,7 +74,7 @@ $(document).ready(function() {
       messageInput.val('');
 
       // Scroll to the bottom of the chat container after the message is added
-      scrollToBottom();
+      scrollToBottomSmooth();
     }
   }
 
